@@ -6,7 +6,7 @@ import Home from '../views/Home.vue'
 Vue.use(VueRouter)
 
 const routes = [{
-    path: '/home',
+    path: '/',
     name: 'Home',
     component: Home
   },
@@ -27,12 +27,17 @@ const routes = [{
   },
   {
     path: '/stairs',
-    name: 'Poker',
+    name: 'Stairs',
     component: () => import( /* webpackChunkName: "about" */ '../components/Stairs/index.vue')
   },
   {
+    path: '/flop',
+    name: 'Flop',
+    component: () => import( /* webpackChunkName: "about" */ '../components/flop/index.vue')
+  },
+  {
     path: '*',
-    redirect: "/home"
+    redirect: "/"
   },
 ]
 
@@ -43,9 +48,7 @@ const router = new VueRouter({
 })
 const lists = store.state.lists
 router.beforeEach((to, from, next) => {
-  console.log("to=>", to)
   const list = lists.find(list => to.path.includes(list.route))
-  console.log("-->", list)
   !!list && store.commit("setGameTitle", list.title)
   next()
 })

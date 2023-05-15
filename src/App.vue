@@ -3,8 +3,8 @@
   .title
     h1 Mia Chen Work
   .content
-    leftBar.left
-    .middle
+    leftBar.left.col-2.col-lg-2.col-md-4.col-sm-1
+    .middle.col-10.col-lg-10.col-md-8.col-sm-11
       h3 {{ game_title }}
       router-view
 </template>
@@ -25,21 +25,11 @@ export default {
   },
 };
 </script>
+<style lang="sass">
+@import "src/assets/sass/basic.sass"
+</style>
 <style lang="sass" scoped>
-body
-  margin: 0
 #app
-  @media (min-width: 1200px)
-    font-size: 16px
-  /* desktops */
-  @media (max-width: 992px)
-    font-size: 18px
-  /* tablets */
-  @media (max-width: 768px)
-    font-size: 20px
-  /* phones */
-  @media (max-width: 576px)
-    font-size: 22px
   .title
     border-bottom: 2px solid
     text-align: center
@@ -51,10 +41,8 @@ body
     display: flex
     .left
       border-right: 1px solid
-      width: 30%
       height: 100%
     .middle
-      width: 70%
       height: 100%
 //   font-family: Avenir, Helvetica, Arial, sans-serif
 //   -webkit-font-smoothing: antialiased

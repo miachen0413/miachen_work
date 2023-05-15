@@ -27,4 +27,5 @@ export default {
 #left-bar
   .list
     padding: 1rem
+    cursor: pointer
 </style>

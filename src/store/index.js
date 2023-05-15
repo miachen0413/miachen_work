@@ -31,6 +31,11 @@ export default new Vuex.Store({
         title: "爬梯子",
         route: "stairs"
       },
+      {
+        id: 6,
+        title: "翻牌遊戲",
+        route: "flop"
+      },
     ],
   },
   mutations: {
