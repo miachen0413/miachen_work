@@ -36,7 +36,9 @@ export default {
       stairs_container: null,
       road_container: null,
       start_doll_container: null,
+      grey_filter: null,
       road: null,
+      roadSetUp: () => {},
       app_width: 900,
       app_height: 600,
       boundary: {
@@ -62,6 +64,8 @@ export default {
       horizontal: 8,
       horizontal_position: [],
       start_doll_name: ["eggHead", "flowerTop", "helmlok", "skully"],
+      is_start_doll_click: false,
+      start_doll_sprite: [],
     };
   },
   mounted() {
@@ -77,6 +81,14 @@ export default {
       },
       immediate: true,
     },
+    is_start_doll_click(is_click) {
+      this.start_doll_sprite.forEach((sprite) => {
+        let filters = [];
+        sprite.interactive = is_click;
+        if (!is_click) filters = [this.grey_filter];
+        sprite.filters = filters;
+      });
+    },
   },
   methods: {
     init() {
@@ -88,6 +100,8 @@ export default {
         height: this.app_height,
         backgroundColor: 0xf7f2ea,
       });
+      this.grey_filter = new this.PIXI.filters.ColorMatrixFilter();
+      this.grey_filter.greyscale(0.2);
       this.stairs_container = new this.PIXI.Container();
       this.road_container = new this.PIXI.Container();
       this.start_doll_container = new this.PIXI.Container();
@@ -108,10 +122,13 @@ export default {
       });
     },
     createStairs() {
+      this.app.ticker.remove(this.roadSetUp);
       this.horizontal_position = [];
       this.stairs_container.removeChildren();
       this.road_container.removeChildren();
       this.start_doll_container.removeChildren();
+      this.start_doll_sprite.forEach((sprite) => sprite.destroyed);
+      this.start_doll_sprite = [];
       const { min_x, min_y, max_y } = this.boundary;
       const distance_x = Math.ceil(
         (this.app_width - 2 * min_x) / (this.straight - 1)
@@ -120,20 +137,13 @@ export default {
       let horizontal_start = [];
       for (let i = 0; i < this.straight; i++) {
         const x = min_x + distance_x * i;
-        const start_doll = this.start_doll_name[i % 4];
-        const start_doll_sprite = PIXIBasic.getPIXISprite(
-          this.resources[start_doll].texture,
-          x,
-          0
-        );
-        this.initStartSprite(start_doll_sprite, i);
+        this.initStartSprite(i, x);
         this.straight_position.push({ x, y: min_y });
         const straight = new this.PIXI.Graphics();
         straight.lineStyle(this.stairs_style);
         straight.moveTo(x, min_y);
         straight.lineTo(x, max_y);
         this.stairs_container.addChild(straight);
-        this.start_doll_container.addChild(start_doll_sprite);
       }
       for (let i = 0; i < this.horizontal; i++) {
         // const level = i % (this.straight - 1),
@@ -175,23 +185,31 @@ export default {
         this.stairs_container.addChild(horizontal);
       }
       this.horizontal_position = horizontal_start.sort((a, b) => a.y - b.y);
-
+      this.is_start_doll_click = true;
       // this.getRoadPosition();
     },
-    initStartSprite(sprite, whitch_road) {
+    initStartSprite(whitch_road, x) {
+      const start_doll = this.start_doll_name[whitch_road % 4];
+      const sprite = PIXIBasic.getPIXISprite(
+        this.resources[start_doll].texture,
+        x,
+        0
+      );
       sprite.anchor.set(0.5, 0);
       sprite.scale.set(0.4, 0.4);
-      sprite.interactive = true;
       sprite.cursor = "pointer";
       sprite.on("pointerdown", onClick);
       const _this = this;
       function onClick() {
-        console.log(whitch_road);
         _this.getRoadPosition(whitch_road);
       }
+      this.start_doll_sprite.push(sprite);
+      sprite.interactive = true;
+      this.start_doll_container.addChild(sprite);
     },
     getRoadPosition(road) {
       // if (this.road !== null) this.road.clear();
+      this.is_start_doll_click = false;
       this.road_container.removeChildren();
       let start_road = road;
       this.road_position = [];
@@ -225,7 +243,7 @@ export default {
         now_y = this.road_position[count].y,
         next_x = now_x,
         next_y = now_y;
-      const setUp = (delta) => {
+      this.roadSetUp = (delta) => {
         const speed = 10 * delta;
         const last_x_point = now_x;
         this.road.moveTo(now_x, now_y);
@@ -238,7 +256,8 @@ export default {
           count++;
         }
         if (count >= this.road_position.length) {
-          this.app.ticker.remove(setUp);
+          this.app.ticker.remove(this.roadSetUp);
+          this.is_start_doll_click = true;
           return;
         }
         const { x, y } = this.road_position[count];
@@ -263,7 +282,7 @@ export default {
         }
         this.road.lineTo(next_x, next_y);
       };
-      this.app.ticker.add(setUp);
+      this.app.ticker.add(this.roadSetUp);
       this.road.endFill();
       this.road_container.addChild(this.road);
     },
