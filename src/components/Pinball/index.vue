@@ -1,3 +1,4 @@
 <template lang="pug">
-  div.pinball
+#pinball
+  p 維護中
 </template>
