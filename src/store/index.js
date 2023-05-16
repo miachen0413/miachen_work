@@ -7,21 +7,22 @@ export default new Vuex.Store({
   state: {
     game_title: "",
     image_path: "",
-    lists: [{
-        id: 1,
-        title: "首頁",
-        route: "home"
-      },
+    lists: [
+      // {
+      //   id: 1,
+      //   title: "首頁",
+      //   route: "home"
+      // },
       // {
       //   id: 2,
       //   title: "撲克牌",
       //   route: "poker"
       // },
-      {
-        id: 3,
-        title: "彈珠台",
-        route: "pinball"
-      },
+      // {
+      //   id: 3,
+      //   title: "彈珠台",
+      //   route: "pinball"
+      // },
       // {
       //   id: 4,
       //   title: "輪盤",
@@ -37,11 +38,11 @@ export default new Vuex.Store({
         title: "翻牌遊戲",
         route: "flop_cards"
       },
-      {
-        id: 7,
-        title: "聊天室",
-        route: "chat"
-      },
+      // {
+      //   id: 7,
+      //   title: "聊天室",
+      //   route: "chat"
+      // },
     ],
   },
   mutations: {
