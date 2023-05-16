@@ -1,10 +1,15 @@
-// const path = require("path")
+const path = require("path")
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   publicPath: process.env.NODE_ENV === 'production' ?
     '/miachen_work/' : '/',
   configureWebpack: {
+    resolve:{
+      alias:{
+        "@": path.resolve(__dirname,"assets")
+      }
+    },
     plugins: [
       new CopyWebpackPlugin({
         patterns: [{
