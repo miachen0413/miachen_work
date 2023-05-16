@@ -31,9 +31,9 @@ const routes = [{
     component: () => import( /* webpackChunkName: "about" */ '../components/Stairs/index.vue')
   },
   {
-    path: '/flop',
-    name: 'Flop',
-    component: () => import( /* webpackChunkName: "about" */ '../components/flop/index.vue')
+    path: '/flop_cards',
+    name: 'FlopCards',
+    component: () => import( /* webpackChunkName: "about" */ '../components/flopCards/index.vue')
   },
   {
     path: '*',
@@ -48,7 +48,7 @@ const router = new VueRouter({
 })
 const lists = store.state.lists
 router.beforeEach((to, from, next) => {
-  const list = lists.find(list => to.path.includes(list.route))
+  const list = lists.find(list => to.path.includes(list.route));
   !!list && store.commit("setGameTitle", list.title)
   next()
 })

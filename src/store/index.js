@@ -34,7 +34,7 @@ export default new Vuex.Store({
       {
         id: 6,
         title: "翻牌遊戲",
-        route: "flop"
+        route: "flop_cards"
       },
     ],
   },
