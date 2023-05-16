@@ -36,6 +36,11 @@ const routes = [{
     component: () => import( /* webpackChunkName: "about" */ '../components/flopCards/index.vue')
   },
   {
+    path: '/chat',
+    name: 'Chat',
+    component: () => import( /* webpackChunkName: "about" */ '../components/chat/index.vue')
+  },
+  {
     path: '*',
     redirect: "/home"
   },

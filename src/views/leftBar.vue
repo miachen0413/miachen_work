@@ -16,6 +16,7 @@ export default {
         pinball: "fi-rr-dice-alt",
         roulette: "fi-rr-globe-snow",
         stairs: "fi-rr-water-ladder",
+        chat: "fi-rr-comment-alt",
         flop_cards: "fi-rr-nfc",
       },
     };

@@ -11,21 +11,21 @@ export default new Vuex.Store({
         title: "首頁",
         route: "home"
       },
-      {
-        id: 2,
-        title: "撲克牌",
-        route: "poker"
-      },
+      // {
+      //   id: 2,
+      //   title: "撲克牌",
+      //   route: "poker"
+      // },
       {
         id: 3,
         title: "彈珠台",
         route: "pinball"
       },
-      {
-        id: 4,
-        title: "輪盤",
-        route: "roulette"
-      },
+      // {
+      //   id: 4,
+      //   title: "輪盤",
+      //   route: "roulette"
+      // },
       {
         id: 5,
         title: "爬梯子",
@@ -35,6 +35,11 @@ export default new Vuex.Store({
         id: 6,
         title: "翻牌遊戲",
         route: "flop_cards"
+      },
+      {
+        id: 7,
+        title: "聊天室",
+        route: "chat"
       },
     ],
   },
