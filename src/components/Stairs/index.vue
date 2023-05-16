@@ -3,7 +3,7 @@
   .setting
     .set-box.col-2
       span 幾條路：
-      img(src="/assets/doll/eggHead.png")
+      img(src="assets/doll/eggHead.png")
       img(src="/miachen_work/assets/doll/eggHead.png")
       select(v-model="straight")
         option(v-for="item in straights", :key="item.name", :value="item.name") {{ item.value }}
@@ -28,6 +28,7 @@
 </template>
 <script>
 // import * as PIXI from "pixi.js";
+import { mapState } from "vuex";
 import * as PIXIBasic from "../../unit/pixiBasic";
 export default {
   data() {
@@ -92,6 +93,9 @@ export default {
       });
     },
   },
+  computed: {
+    ...mapState({ image_path: (state) => state.image_path }),
+  },
   methods: {
     init() {
       this.straights = [];
@@ -115,10 +119,10 @@ export default {
       this.$refs.stairsBox.appendChild(this.app.view);
       this.resources = this.loader.resources;
       this.loader
-        .add("eggHead", "/assets/doll/eggHead.png")
-        .add("flowerTop", "/assets/doll/flowerTop.png")
-        .add("helmlok", "~assets/doll/helmlok.png")
-        .add("skully", "@/doll/skully.png");
+        .add("eggHead", this.image_path + "assets/doll/eggHead.png")
+        .add("flowerTop", this.image_path + "assets/doll/flowerTop.png")
+        .add("helmlok", this.image_path + "assets/doll/helmlok.png")
+        .add("skully", this.image_path + "assets/doll/skully.png");
       this.loader.load(() => {
         this.createStairs();
       });

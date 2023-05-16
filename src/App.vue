@@ -15,6 +15,9 @@ export default {
   components: {
     LeftBar,
   },
+  created(){
+    if(process.env.NODE_ENV === 'production') this.$store.commit("setImagePath","/miachen_work/")
+  },
   data() {
     return {};
   },

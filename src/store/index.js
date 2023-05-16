@@ -6,6 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     game_title: "",
+    image_path: "",
     lists: [{
         id: 1,
         title: "首頁",
@@ -46,6 +47,9 @@ export default new Vuex.Store({
   mutations: {
     setGameTitle(state, value) {
       state.game_title = value
+    },
+    setImagePath(state, val) {
+      state.image_path = val
     }
   },
   actions: {},
