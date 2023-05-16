@@ -3,8 +3,6 @@
   .setting
     .set-box.col-2
       span 幾條路：
-      img(src="assets/doll/eggHead.png")
-      img(src="/miachen_work/assets/doll/eggHead.png")
       select(v-model="straight")
         option(v-for="item in straights", :key="item.name", :value="item.name") {{ item.value }}
     .set-box.col-2
