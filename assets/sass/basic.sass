@@ -1,0 +1,42 @@
+$breakpoints: "sm" 576 18px, "md" 768 20px, "lg" 992 22px
+body
+  margin: 0
+  font-size: 16px
+@for $i from 1 through 12
+  .col-#{$i}
+    width: 100% / 12 * $i
+@each $name,$width,$size in $breakpoints
+  @media screen and (min-width: $width *1px)
+    body
+      font-size: $size
+    @for $i from 1 through 12
+      .col-#{$name}-#{$i}
+        width: 100% / 12 * $i
+canvas
+  width: 100%
+
+
+// @media (min-width: 1200px)
+//   @for $i from 1 through 12
+//     .col-max-#{$i}
+//       font-size: 16px
+//       width: 100% / 12 * $i
+
+/* desktops */
+// @media (max-width: 992px)
+//   @for $i from 1 through 12
+//     .col-lg-#{$i}
+//       font-size: 18px
+//       width: 100% / 12 * $i
+// /* tablets */
+// @media (max-width: 768px)
+//   @for $i from 1 through 12
+//     .col-md-#{$i}
+//       font-size: 20px
+//       width: 100% / 12 * $i
+// /* phones */
+// @media (max-width: 576px)
+//   @for $i from 1 through 12
+//     .col-sm-#{$i}
+//       font-size: 22px
+//       width: 100% / 12 * $i
