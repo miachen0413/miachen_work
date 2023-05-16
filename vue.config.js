@@ -3,11 +3,11 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   publicPath: process.env.NODE_ENV === 'production' ?
-    '/miachen_work/' : '/',
+    '/' : '/',
   configureWebpack: {
     resolve:{
       alias:{
-        "@": path.resolve(__dirname,"assets")
+        "~": path.resolve(__dirname,"")
       }
     },
     plugins: [

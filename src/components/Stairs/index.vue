@@ -117,7 +117,7 @@ export default {
       this.loader
         .add("eggHead", "/assets/doll/eggHead.png")
         .add("flowerTop", "/assets/doll/flowerTop.png")
-        .add("helmlok", "@/doll/helmlok.png")
+        .add("helmlok", "~assets/doll/helmlok.png")
         .add("skully", "@/doll/skully.png");
       this.loader.load(() => {
         this.createStairs();
