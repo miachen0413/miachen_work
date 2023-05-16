@@ -1,13 +1,24 @@
 <template lang="pug">
 #left-bar
   ul
-    li.list(v-for="list in lists", :key="list.id", @click="goToRoute(list)") {{ list.title }}
+    li.list(v-for="list in lists", :key="list.id", @click="goToRoute(list)")
+      i.fi(:class="icon_alias[list.route]")
+      span {{ list.title }}
 </template>
 <script>
 import { mapState } from "vuex";
 export default {
   data() {
-    return {};
+    return {
+      icon_alias: {
+        home: "fi-rr-home",
+        poker: "fi-rr-playing-cards",
+        pinball: "fi-rr-dice-alt",
+        roulette: "fi-rr-globe-snow",
+        stairs: "fi-rr-water-ladder",
+        flop_cards: "fi-rr-nfc",
+      },
+    };
   },
   computed: {
     ...mapState({
@@ -17,7 +28,7 @@ export default {
   methods: {
     goToRoute(list) {
       this.$router.push({
-        path: "/" +list.route,
+        path: "/" + list.route,
       });
     },
   },
@@ -25,7 +36,11 @@ export default {
 </script>
 <style lang="sass" scoped>
 #left-bar
+  overflow: hidden
   .list
     padding: 1rem
     cursor: pointer
+    list-style: none
+  span
+    margin-left: 20px
 </style>

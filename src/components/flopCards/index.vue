@@ -10,6 +10,7 @@
           :value="item.value"
         ) {{ item.name }}
     button(type="submit", @click="createFlopCards") 生成牌組
+  br
   .flop-cards-box
     .card-box(v-for="item in cards", :key="item.id", @click="cardTurnOn(item)")
       .front(:class="{ turn: item.turn, show: !item.show }") {{ item.value }}
@@ -82,6 +83,7 @@ export default {
   .flop-cards-box
     // width: 100%
     border: 1px solid
+    background-color: #f7f2ea
     max-width: 880px
     // max-height: 600px
     padding: 0px 5px
