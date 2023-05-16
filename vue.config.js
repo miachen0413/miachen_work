@@ -9,7 +9,7 @@ module.exports = {
       new CopyWebpackPlugin({
         patterns: [{
           from: "./src/assets",
-          to: "./src/assets"
+          to: "assets"
         }, ]
       })
     ]

@@ -113,10 +113,10 @@ export default {
       this.$refs.stairsBox.appendChild(this.app.view);
       this.resources = this.loader.resources;
       this.loader
-        .add("eggHead", "../../assets/doll/eggHead.png")
-        .add("flowerTop", "../../assets/doll/flowerTop.png")
-        .add("helmlok", "../../assets/doll/helmlok.png")
-        .add("skully", "../../assets/doll/skully.png");
+        .add("eggHead", "../assets/doll/eggHead.png")
+        .add("flowerTop", "../assets/doll/flowerTop.png")
+        .add("helmlok", "../assets/doll/helmlok.png")
+        .add("skully", "../assets/doll/skully.png");
       this.loader.load(() => {
         this.createStairs();
       });
