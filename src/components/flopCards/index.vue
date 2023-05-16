@@ -51,6 +51,7 @@ export default {
     },
     async cardTurnOn(item) {
       if (!this.is_click) return;
+      if (this.turn_card[0] && item.id === this.turn_card[0].id) return;
       this.is_click = false;
       item.turn = true;
       this.turn_card.push(item);
