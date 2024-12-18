@@ -40,10 +40,10 @@ const routes = [{
     name: 'Chat',
     component: () => import( /* webpackChunkName: "about" */ '../components/chat/index.vue')
   },
-  {
-    path: '*',
-    redirect: "/stairs"
-  },
+  // {
+  //   path: '*',
+  //   redirect: "/stairs"
+  // },
 ]
 
 
